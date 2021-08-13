@@ -45,12 +45,15 @@ public class DVDStoreStepDefinitions{
 
 	@Then("the get dvd list request should return the expected outputs")
 	public void theGetDvdListRequestShouldReturnTheExpectedOutput() {
-    assertEquals(expectedResults, store.getDVDs());
+		assertEquals(expectedResults, store.getDVDs());
 	}
 	
 	@Given("the following DVDs in the store")
 	public void theFollowingDVDsInTheStore(List<DVD> input) {
-    DVDs = input;
+		DVDs = input;
+		for(DVD DVD : DVDs) {
+			store.addDVD(DVD);
+		}
 	}
 
 	@Given("the dvd to remove with the id {int}")
@@ -61,5 +64,11 @@ public class DVDStoreStepDefinitions{
 	@When("the dvd is removed")
 	public void theDvdIsRemoved() {
 		store.deleteDVD(id);
+	}
+
+	@When("I change the actor of the film with the id {int} to {string}")
+	public void i_change_the_actor_of_the_film_with_the_id_to(Integer id, String actor) {
+		DVD item = store.getDVD(id);
+		store.updateDVD(id, item.getTitle(), item.getYear(), actor);
 	}
 }

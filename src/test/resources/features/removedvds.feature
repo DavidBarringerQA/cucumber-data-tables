@@ -8,7 +8,7 @@ Feature: DVD store can remove old DVDs
     | Film 1 | 2000   | Actor  |
     | Film 2 | 2021 | Bactor |
     And the expected outputs
-    | Film 1  - 2000 - Actor |
+    | Film 1 - 2000 - Actor |
     And the dvd to remove with the id 2
     When the dvd is removed
-    Then the get dvd list request should return the expected output
+    Then the get dvd list request should return the expected outputs
